@@ -6,18 +6,23 @@ import android.annotation.SuppressLint;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.VideoView;
 
 import java.io.File;
 
 public class SplashActivity extends AppCompatActivity {
-FullScreenVideoView splashVideo;
+    FullScreenVideoView splashVideo;
+    TextView mTvtimer;
+
     @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         splashVideo = findViewById(R.id.vv_play);
+        mTvtimer = findViewById(R.id.tv_timer);
         splashVideo.setVideoURI(
                 Uri.parse("android.resource://" + getPackageName() + File.separator + R.raw.splash));
         splashVideo.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
@@ -32,5 +37,18 @@ FullScreenVideoView splashVideo;
                 mp.start();
             }
         });
+        CustomCountDownTimer timer = new CustomCountDownTimer(5, new CustomCountDownTimer.ICountDownHandler() {
+            @Override
+            public void onTicker(int time) {
+                mTvtimer.setText( "" + time);
+            }
+
+            @Override
+            public void onFinish() {
+                mTvtimer.setText( "跳过");
+
+            }
+        });
+        timer.start();
     }
 }

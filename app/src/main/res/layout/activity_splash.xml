@@ -11,6 +11,7 @@
         android:id="@+id/vv_play"
         style="@style/video_view_style" />
     <TextView
+        android:id="@+id/tv_timer"
         android:textSize="18dp"
         android:textColor="@color/color_ffff"
         android:layout_gravity="right"
