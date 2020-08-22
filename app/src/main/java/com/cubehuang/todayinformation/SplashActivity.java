@@ -3,6 +3,7 @@ package com.cubehuang.todayinformation;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import java.io.File;
 public class SplashActivity extends AppCompatActivity {
     FullScreenVideoView splashVideo;
     TextView mTvtimer;
+    CustomCountDownTimer timer;
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -23,6 +25,15 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
         splashVideo = findViewById(R.id.vv_play);
         mTvtimer = findViewById(R.id.tv_timer);
+        mTvtimer.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(SplashActivity.this,MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
         splashVideo.setVideoURI(
                 Uri.parse("android.resource://" + getPackageName() + File.separator + R.raw.splash));
         splashVideo.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
@@ -37,7 +48,7 @@ public class SplashActivity extends AppCompatActivity {
                 mp.start();
             }
         });
-        CustomCountDownTimer timer = new CustomCountDownTimer(5, new CustomCountDownTimer.ICountDownHandler() {
+        timer = new CustomCountDownTimer(5, new CustomCountDownTimer.ICountDownHandler() {
             @Override
             public void onTicker(int time) {
                 mTvtimer.setText( "" + time);
@@ -50,5 +61,11 @@ public class SplashActivity extends AppCompatActivity {
             }
         });
         timer.start();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        timer.cancel();
     }
 }

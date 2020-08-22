@@ -37,6 +37,7 @@ public class CustomCountDownTimer implements Runnable{
                 if (countDownHandler != null){
                     countDownHandler.onFinish();
                 }
+                cancel();
 
             }else {//每隔一秒 -1
                 countDown = time--;
