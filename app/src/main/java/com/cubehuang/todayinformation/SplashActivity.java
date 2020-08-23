@@ -51,7 +51,7 @@ public class SplashActivity extends AppCompatActivity {
         timer = new CustomCountDownTimer(5, new CustomCountDownTimer.ICountDownHandler() {
             @Override
             public void onTicker(int time) {
-                mTvtimer.setText( "" + time);
+                mTvtimer.setText( time + " 秒");
             }
 
             @Override
