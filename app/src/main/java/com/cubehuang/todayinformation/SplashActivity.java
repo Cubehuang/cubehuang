@@ -1,7 +1,5 @@
 package com.cubehuang.todayinformation;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.media.MediaPlayer;
@@ -9,63 +7,80 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.VideoView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.File;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
+@Viewinject(mainlayoutid = R.layout.activity_splash)
 public class SplashActivity extends AppCompatActivity {
-    FullScreenVideoView splashVideo;
-    TextView mTvtimer;
-    CustomCountDownTimer timer;
+
+
+    @BindView(R.id.vv_play)
+    FullScreenVideoView vvPlay;
+    @BindView(R.id.tv_timer)
+    TextView tvTimer;
+    TimePresenter timePresenter;
 
     @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        splashVideo = findViewById(R.id.vv_play);
-        mTvtimer = findViewById(R.id.tv_timer);
-        mTvtimer.setOnClickListener(new View.OnClickListener(){
+        ButterKnife.bind(this);
+        initListener();
+        initVideo();
+        initTimerPresenter();
+        //把初始化Timer即相关内容抽出到presenter中
+    }
+
+    private void initTimerPresenter() {
+        timePresenter = new TimePresenter(this);
+        timePresenter.startTime();
+    }
+
+
+    private void initVideo() {
+        vvPlay.setVideoURI(
+                Uri.parse("android.resource://" + getPackageName() + File.separator + R.raw.splash));
+
+    }
+
+    private void initListener() {
+        tvTimer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Intent intent = new Intent(SplashActivity.this,MainActivity.class);
+                Intent intent = new Intent(SplashActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
             }
         });
-        splashVideo.setVideoURI(
-                Uri.parse("android.resource://" + getPackageName() + File.separator + R.raw.splash));
-        splashVideo.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mp) {
-                mp.start();
-            }
-        });
-        splashVideo.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+
+        vvPlay.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mp) {
                 mp.start();
             }
         });
-        timer = new CustomCountDownTimer(5, new CustomCountDownTimer.ICountDownHandler() {
+        vvPlay.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
-            public void onTicker(int time) {
-                mTvtimer.setText( time + " 秒");
-            }
-
-            @Override
-            public void onFinish() {
-                mTvtimer.setText( "跳过");
-
+            public void onPrepared(MediaPlayer mp) {
+                mp.start();
             }
         });
-        timer.start();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        timer.cancel();
+       timePresenter.timeCancel();
+    }
+
+    public void setTvtext(String s) {
+        tvTimer.setText(s);
     }
 }
