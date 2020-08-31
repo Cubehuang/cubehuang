@@ -1,6 +1,10 @@
 package com.cubehuang.todayinformation;
 
-public class TimePresenter {
+import com.cubehuang.todayinformation.mvp.BaseMvpPreseter.BaseMvpPresenter;
+import com.cubehuang.todayinformation.mvp.IMVPView;
+import com.cubehuang.todayinformation.mvp.presenter.LifeCircleMvpPresenter;
+
+public class TimePresenter extends BaseMvpPresenter {
     private final SplashActivity mActivity;
     private CustomCountDownTimer timer;
 
@@ -23,7 +27,18 @@ public class TimePresenter {
         timer.start();
     }
 
-    public void timeCancel() {
+    public void Cancel() {
         timer.cancel();
+    }
+
+    @Override
+    protected IMVPView getEmptyView() {
+        return null;
+    }
+
+    @Override
+    public void onDestropy() {
+        super.onDestropy();
+        Cancel();
     }
 }
