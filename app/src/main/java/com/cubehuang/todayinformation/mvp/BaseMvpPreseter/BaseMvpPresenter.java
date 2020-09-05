@@ -9,11 +9,14 @@ import androidx.annotation.Nullable;
 import com.cubehuang.todayinformation.mvp.IMVPView;
 import com.cubehuang.todayinformation.mvp.presenter.LifeCircleMvpPresenter;
 /*
-* 抽象重介质
+* 抽象
 * */
 
 public abstract class BaseMvpPresenter <T extends IMVPView>extends LifeCircleMvpPresenter<T> {
 
+    public BaseMvpPresenter(T view){
+        super(view);
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState, Intent intent, Bundle getArgument) {
@@ -56,7 +59,7 @@ public abstract class BaseMvpPresenter <T extends IMVPView>extends LifeCircleMvp
     }
 
     @Override
-    public void onNewIntent() {
+    public void onNewIntent(Intent intent) {
 
     }
 

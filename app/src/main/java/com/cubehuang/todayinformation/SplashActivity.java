@@ -10,23 +10,25 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
+
+import com.cubehuang.todayinformation.mvp.BaseMcpActivity.BaseActivity;
+import com.cubehuang.todayinformation.mvp.ISplashActivityContract;
 
 import java.io.File;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 @Viewinject(mainlayoutid = R.layout.activity_splash)
-public class SplashActivity extends AppCompatActivity {
+public class SplashActivity extends BaseActivity implements ISplashActivityContract.Iview {
 
 
     @BindView(R.id.vv_play)
     FullScreenVideoView vvPlay;
     @BindView(R.id.tv_timer)
     TextView tvTimer;
-    TimePresenter timePresenter;
+    //TimePresenter timePresenter;
+    private ISplashActivityContract.IPresenter timePresenter;
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -34,15 +36,21 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         ButterKnife.bind(this);
+
+        //把初始化Timer即相关内容抽出到presenter中
+    }
+
+    @Override
+    public void afterBindView() {
         initListener();
         initVideo();
         initTimerPresenter();
-        //把初始化Timer即相关内容抽出到presenter中
     }
 
     private void initTimerPresenter() {
         timePresenter = new TimePresenter(this);
-        timePresenter.startTime();
+        timePresenter.initTimer();
+
     }
 
 
@@ -76,14 +84,15 @@ public class SplashActivity extends AppCompatActivity {
         });
     }
 
-    @Override
+    /*@Override
     protected void onDestroy() {
         super.onDestroy();
         timePresenter.onDestropy();
-    }
+    }*/
 
-    public void setTvtext(String s) {
-        tvTimer.setText(s);
+    @Override
+    public void setTvTimer(String timer) {
+        tvTimer.setText(timer);
     }
 
     @Override

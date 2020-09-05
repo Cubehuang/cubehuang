@@ -8,6 +8,7 @@ import android.widget.FrameLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.cubehuang.todayinformation.mvp.BaseMcpActivity.BaseActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import butterknife.BindView;
@@ -37,8 +38,13 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        changeAnima(rgMainBottom,rgMainTop);
 
+
+    }
+
+    @Override
+    public void afterBindView() {
+        changeAnima(rgMainBottom,rgMainTop);
     }
 
     @OnClick(R.id.fac_main)

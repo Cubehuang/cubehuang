@@ -1,27 +1,32 @@
 package com.cubehuang.todayinformation;
 
-import com.cubehuang.todayinformation.mvp.BaseMvpPreseter.BaseMvpPresenter;
-import com.cubehuang.todayinformation.mvp.IMVPView;
-import com.cubehuang.todayinformation.mvp.presenter.LifeCircleMvpPresenter;
+import android.util.Log;
 
-public class TimePresenter extends BaseMvpPresenter {
-    private final SplashActivity mActivity;
+import com.cubehuang.todayinformation.mvp.BaseMvpPreseter.BaseMvpPresenter;
+import com.cubehuang.todayinformation.mvp.ISplashActivityContract;
+
+/**
+ * The type Time presenter.
+ */
+public class TimePresenter extends BaseMvpPresenter<ISplashActivityContract.Iview> implements ISplashActivityContract.IPresenter {
+
     private CustomCountDownTimer timer;
 
-    public TimePresenter(SplashActivity activity){
-        this.mActivity = activity;
-    }
+    public TimePresenter(ISplashActivityContract.Iview iview){
+        //将view层的实例传给父类
+        super(iview);
 
-    public void startTime() {
+    }
+    public void initTimer() {
         timer = new CustomCountDownTimer(5, new CustomCountDownTimer.ICountDownHandler() {
             @Override
             public void onTicker(int time) {
-                mActivity.setTvtext(time + " 秒");
+                getView().setTvTimer(time + " 秒");
             }
 
             @Override
             public void onFinish() {
-                mActivity.setTvtext( "跳过");
+                getView().setTvTimer( "跳过");
             }
         });
         timer.start();
@@ -32,13 +37,15 @@ public class TimePresenter extends BaseMvpPresenter {
     }
 
     @Override
-    protected IMVPView getEmptyView() {
-        return null;
+    protected ISplashActivityContract.Iview getEmptyView() {
+        return ISplashActivityContract.emptyView;
     }
+
 
     @Override
     public void onDestropy() {
         super.onDestropy();
         Cancel();
+        Log.e("hsy","onDestory");
     }
 }

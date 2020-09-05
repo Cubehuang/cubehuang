@@ -27,7 +27,7 @@ public interface IlifeCircle {
     
     void onViewDestroy();
     
-    void onNewIntent();
+    void onNewIntent(Intent intent);
     
     void onActivityResult(int requestCode, int resultCode, @Nullable Intent data);
 
