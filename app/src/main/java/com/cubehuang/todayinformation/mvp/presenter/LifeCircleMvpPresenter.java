@@ -36,6 +36,11 @@ public abstract class LifeCircleMvpPresenter<T extends IMVPView> implements Ilif
     }
 
     @Override
+    public void onResume() {
+
+    }
+
+    @Override
     public void onDestropy() {
         weakReference = null;
     }

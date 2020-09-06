@@ -1,11 +1,13 @@
 package com.cubehuang.todayinformation.main;
 
+import android.util.Log;
+
 import androidx.fragment.app.Fragment;
 
 import com.cubehuang.todayinformation.R;
-import com.cubehuang.todayinformation.main.shanghaiFragment.HangzhouFragment;
-import com.cubehuang.todayinformation.main.shanghaiFragment.ShaiHaiFragment;
 import com.cubehuang.todayinformation.main.shanghaiFragment.shanghaiFragment.GuangzhouFragment;
+import com.cubehuang.todayinformation.main.shanghaiFragment.shanghaiFragment.HangzhouFragment;
+import com.cubehuang.todayinformation.main.shanghaiFragment.shanghaiFragment.ShanghaiFragment;
 import com.cubehuang.todayinformation.main.shanghaiFragment.shanghaiFragment.ShengzhenFragment;
 import com.cubehuang.todayinformation.mvp.BaseMvpPreseter.BaseMvpPresenter;
 
@@ -73,7 +75,7 @@ public class MainActivityPresenter extends BaseMvpPresenter<IMainActivityContrac
         Fragment fragment = null;
         switch (mCurrentFragment){
             case 0:
-                fragment = new ShaiHaiFragment();
+                fragment = new ShanghaiFragment();
                 break;
             case 1:
                 fragment = new HangzhouFragment();
@@ -108,5 +110,11 @@ public class MainActivityPresenter extends BaseMvpPresenter<IMainActivityContrac
             getView().hideFragment(fragment);
         }
 
+    }
+
+    @Override
+    public void onResume() {
+        Log.d("hsy","onResume");
+        super.onResume();
     }
 }

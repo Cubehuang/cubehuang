@@ -41,12 +41,12 @@ public class MainActivity extends BaseActivity implements IMainActivityContract.
     IMainActivityContract.IPresenter maPresenter = new MainActivityPresenter(this) {
     };
 
-    @Override
+    /*@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
 
-    }
+    }*/
 
     @Override
     public void afterBindView() {
@@ -86,17 +86,17 @@ public class MainActivity extends BaseActivity implements IMainActivityContract.
 
     @Override
     public void showFragment(Fragment fragment) {
-        getSupportFragmentManager().beginTransaction().show(fragment);
+        getSupportFragmentManager().beginTransaction().show(fragment).commit();
     }
 
     @Override
     public void hideFragment(Fragment fragment) {
-        getSupportFragmentManager().beginTransaction().hide(fragment);
+        getSupportFragmentManager().beginTransaction().hide(fragment).commit();
 
     }
 
     @Override
     public void addFragment(Fragment fragment) {
-        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,fragment);
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,fragment).commit();
     }
 }
