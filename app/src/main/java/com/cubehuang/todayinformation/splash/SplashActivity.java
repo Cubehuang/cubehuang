@@ -1,4 +1,4 @@
-package com.cubehuang.todayinformation;
+package com.cubehuang.todayinformation.splash;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -11,8 +11,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.cubehuang.todayinformation.mvp.BaseMcpActivity.BaseActivity;
-import com.cubehuang.todayinformation.mvp.ISplashActivityContract;
+import com.cubehuang.todayinformation.FullScreenVideoView;
+import com.cubehuang.todayinformation.main.MainActivity;
+import com.cubehuang.todayinformation.R;
+import com.cubehuang.todayinformation.base.Viewinject;
+import com.cubehuang.todayinformation.base.BaseActivity;
 
 import java.io.File;
 
@@ -31,20 +34,13 @@ public class SplashActivity extends BaseActivity implements ISplashActivityContr
     private ISplashActivityContract.IPresenter timePresenter;
 
     @SuppressLint("WrongViewCast")
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash);
-        ButterKnife.bind(this);
-
-        //把初始化Timer即相关内容抽出到presenter中
-    }
 
     @Override
     public void afterBindView() {
+        initTimerPresenter();
         initListener();
         initVideo();
-        initTimerPresenter();
+
     }
 
     private void initTimerPresenter() {

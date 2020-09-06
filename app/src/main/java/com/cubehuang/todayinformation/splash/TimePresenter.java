@@ -1,9 +1,10 @@
-package com.cubehuang.todayinformation;
+package com.cubehuang.todayinformation.splash;
 
 import android.util.Log;
 
+import com.cubehuang.todayinformation.CustomCountDownTimer;
 import com.cubehuang.todayinformation.mvp.BaseMvpPreseter.BaseMvpPresenter;
-import com.cubehuang.todayinformation.mvp.ISplashActivityContract;
+import com.cubehuang.todayinformation.splash.ISplashActivityContract;
 
 /**
  * The type Time presenter.

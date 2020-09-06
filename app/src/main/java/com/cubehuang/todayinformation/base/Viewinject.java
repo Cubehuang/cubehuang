@@ -1,4 +1,4 @@
-package com.cubehuang.todayinformation;
+package com.cubehuang.todayinformation.base;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;

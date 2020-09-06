@@ -1,14 +1,9 @@
-package com.cubehuang.todayinformation.mvp.BaseMcpActivity;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.cubehuang.todayinformation.base;
 
 import android.os.Bundle;
-import android.view.animation.Animation;
 
-import com.cubehuang.todayinformation.Viewinject;
+import com.cubehuang.todayinformation.base.Viewinject;
 import com.cubehuang.todayinformation.mvp.presenter.LifeCircleMvpActivity;
-
-import java.lang.annotation.Annotation;
 
 import butterknife.ButterKnife;
 
@@ -36,7 +31,7 @@ public abstract class BaseActivity extends LifeCircleMvpActivity {
     }
 //模板方法 设计模式
     public abstract void afterBindView();
-
+//View的依赖注入绑定
     private void bindeView() {
 
         ButterKnife.bind(this);
