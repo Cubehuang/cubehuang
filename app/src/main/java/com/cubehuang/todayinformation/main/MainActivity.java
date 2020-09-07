@@ -11,15 +11,16 @@ import android.widget.RadioGroup;
 import androidx.fragment.app.Fragment;
 
 import com.cubehuang.todayinformation.R;
-import com.cubehuang.todayinformation.base.Viewinject;
 import com.cubehuang.todayinformation.base.BaseActivity;
+import com.cubehuang.todayinformation.base.Viewinject;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 @Viewinject(mainlayoutid = R.layout.activity_main)
-public class MainActivity extends BaseActivity implements IMainActivityContract.Iview{
+public class MainActivity extends BaseActivity implements IMainActivityContract.Iview {
 
     @BindView(R.id.fac_main)
     FloatingActionButton facMain;
@@ -37,8 +38,10 @@ public class MainActivity extends BaseActivity implements IMainActivityContract.
     RadioButton rbMainShenzhen;
     @BindView(R.id.rg_main_bottom)
     RadioGroup rgMainBottom;
+    @BindView(R.id.fragment_container)
+    FrameLayout fragmentContainer;
     private boolean isclickbutton;
-    IMainActivityContract.IPresenter maPresenter = new MainActivityPresenter(this) {
+    IMainActivityContract.IPresenter mPresenter = new MainActivityPresenter(this) {
     };
 
     /*@Override
@@ -50,36 +53,73 @@ public class MainActivity extends BaseActivity implements IMainActivityContract.
 
     @Override
     public void afterBindView() {
-        changeAnima(rgMainBottom,rgMainTop);
-        maPresenter.initFragement();
+        changeAnima(rgMainBottom, rgMainTop);
+        mPresenter.initFragement();
     }
 
-    @OnClick(R.id.fac_main)
+    @OnClick({R.id.fac_main})
     public void onClick() {
         isclickbutton = !isclickbutton;
         if (isclickbutton) {
             changeAnima(rgMainTop, rgMainBottom);
+            handleTopPosition();
         } else {
-            changeAnima(rgMainBottom,rgMainTop);
+            changeAnima(rgMainBottom, rgMainTop);
+            handleBottomPosition();
         }
+    }
+
+    //shanghai 杭州
+    private void handleBottomPosition() {
+        if (rbMainHangzhou.isChecked()) {
+            mPresenter.replaceFragment(1);
+        } else {
+            mPresenter.replaceFragment(0);
+        }
+        /*if (mPresenter.getTopPosition() != 1) {
+            mPresenter.replaceFragment(0);
+            //rbMainShanghai.setChecked(true);
+        }else {
+
+
+            //rbMainHangzhou.setChecked(true);
+        }*/
+    }
+
+    //广州 深圳
+    private void handleTopPosition() {
+        if (rbMainShenzhen.isChecked()) {
+            mPresenter.replaceFragment(3);
+        } else {
+            mPresenter.replaceFragment(2);
+        }
+
+        /*if (mPresenter.getBottomPosition() != 3) {
+
+            //rbMainGuangzhou.setChecked(true);
+        }else {
+
+
+            //rbMainShenzhen.setChecked(true);
+        }*/
     }
 
     private void changeAnima(RadioGroup gone, RadioGroup show) {
         //清除动画
         gone.clearAnimation();
         //得到动画
-        Animation animationGone = AnimationUtils.loadAnimation(this,R.anim.main_tab_translate_hide);
+        Animation animationGone = AnimationUtils.loadAnimation(this, R.anim.main_tab_translate_hide);
         //启动动画
         gone.startAnimation(animationGone);
         gone.setVisibility(View.GONE);
 
         show.clearAnimation();
-        Animation animationShow = AnimationUtils.loadAnimation(this,R.anim.main_tab_translate_show);
+        Animation animationShow = AnimationUtils.loadAnimation(this, R.anim.main_tab_translate_show);
         show.startAnimation(animationShow);
         show.setVisibility(View.VISIBLE);
     }
 
-    private void showRadioButton(RadioButton gone, RadioButton show) {
+    private void showRadioButton(RadioGroup gone, RadioGroup show) {
         gone.setVisibility(View.GONE);
 
     }
@@ -97,6 +137,40 @@ public class MainActivity extends BaseActivity implements IMainActivityContract.
 
     @Override
     public void addFragment(Fragment fragment) {
-        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,fragment).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fragment).commit();
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
+    }
+
+    @OnClick({R.id.rb_main_shanghai,R.id.rb_main_hangzhou,R.id.rb_main_guangzhou,R.id.rb_main_shenzhen})
+    public void onClick1(View view) {
+        switch (view.getId()){
+            case R.id.rb_main_shanghai:
+                if (mPresenter.getmCurrentCheckId() != R.id.rb_main_shanghai){
+                    mPresenter.replaceFragment(0);
+                }
+                break;
+            case R.id.rb_main_hangzhou:
+                if (mPresenter.getmCurrentCheckId() != R.id.rb_main_hangzhou){
+                    mPresenter.replaceFragment(1);
+                }
+                break;
+            case R.id.rb_main_guangzhou:
+                if (mPresenter.getmCurrentCheckId() != R.id.rb_main_guangzhou){
+                    mPresenter.replaceFragment(2);
+                }
+                break;
+            case R.id.rb_main_shenzhen:
+                if (mPresenter.getmCurrentCheckId() != R.id.rb_main_shenzhen){
+                    mPresenter.replaceFragment(3);
+                }
+                break;
+        }
+
     }
 }

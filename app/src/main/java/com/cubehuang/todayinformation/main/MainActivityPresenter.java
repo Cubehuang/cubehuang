@@ -15,6 +15,8 @@ public class MainActivityPresenter extends BaseMvpPresenter<IMainActivityContrac
     private int mCurrentFragment;
     private Fragment[] mFragments = new Fragment[4];
     private int mCurrentCheckId;
+    private int mBottomPosition;
+    private int mTopPosition;
 
     public MainActivityPresenter(IMainActivityContract.Iview view) {
         super(view);
@@ -31,7 +33,7 @@ public class MainActivityPresenter extends BaseMvpPresenter<IMainActivityContrac
         replaceFragment(mCurrentFragment);
     }
     //替换复用Fragment
-    private void replaceFragment(int mCurrentFragment) {
+    public void replaceFragment(int mCurrentFragment) {
         for (int i = 0; i <mFragments.length; i++){
             if (mCurrentFragment != i){
                 if (mFragments[i] != null){
@@ -50,21 +52,41 @@ public class MainActivityPresenter extends BaseMvpPresenter<IMainActivityContrac
         }
 
     }
+
+    @Override
+    public int getTopPosition() {
+        return mTopPosition;
+    }
+
+    @Override
+    public int getBottomPosition() {
+        return mBottomPosition;
+    }
+
+    @Override
+    public int getmCurrentCheckId() {
+        return mCurrentCheckId;
+    }
+
     //记录当前fragment的角标
     private void setCurChecked(int mCurrentFragment) {
         this.mCurrentFragment = mCurrentFragment;
         switch (mCurrentFragment){
             case 0:
                 this.mCurrentCheckId = R.id.rb_main_shanghai;
+                mTopPosition = 0;
                 break;
             case 1:
                 this.mCurrentCheckId = R.id.rb_main_hangzhou;
+                mTopPosition = 1;
                 break;
             case 2:
-                this.mCurrentCheckId = R.id.rb_main_shenzhen;
+                this.mCurrentCheckId = R.id.rb_main_guangzhou;
+                mBottomPosition = 2;
                 break;
             case 3:
-                this.mCurrentCheckId = R.id.rb_main_guangzhou;
+                this.mCurrentCheckId = R.id.rb_main_shenzhen;
+                mBottomPosition = 3;
                 break;
         }
 
@@ -81,10 +103,10 @@ public class MainActivityPresenter extends BaseMvpPresenter<IMainActivityContrac
                 fragment = new HangzhouFragment();
                 break;
             case 2:
-                fragment = new ShengzhenFragment();
+                fragment = new GuangzhouFragment();
                 break;
             case 3:
-                fragment = new GuangzhouFragment();
+                fragment = new ShengzhenFragment();
                 break;
         }
         mFragments[mCurrentFragment] = fragment;
