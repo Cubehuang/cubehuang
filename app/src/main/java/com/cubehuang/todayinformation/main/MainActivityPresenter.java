@@ -5,10 +5,10 @@ import android.util.Log;
 import androidx.fragment.app.Fragment;
 
 import com.cubehuang.todayinformation.R;
-import com.cubehuang.todayinformation.main.shanghaiFragment.shanghaiFragment.GuangzhouFragment;
-import com.cubehuang.todayinformation.main.shanghaiFragment.shanghaiFragment.HangzhouFragment;
-import com.cubehuang.todayinformation.main.shanghaiFragment.shanghaiFragment.ShanghaiFragment;
-import com.cubehuang.todayinformation.main.shanghaiFragment.shanghaiFragment.ShengzhenFragment;
+import com.cubehuang.todayinformation.main.guangzhou.GuangzhouFragment;
+import com.cubehuang.todayinformation.main.hangzhou.HangzhouFragment;
+import com.cubehuang.todayinformation.main.shanghai.ShanghaiFragment;
+import com.cubehuang.todayinformation.main.shenzhen.ShengzhenFragment;
 import com.cubehuang.todayinformation.mvp.BaseMvpPreseter.BaseMvpPresenter;
 
 public class MainActivityPresenter extends BaseMvpPresenter<IMainActivityContract.Iview> implements IMainActivityContract.IPresenter {

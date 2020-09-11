@@ -13,11 +13,16 @@ import androidx.fragment.app.Fragment;
 import com.cubehuang.todayinformation.R;
 import com.cubehuang.todayinformation.base.BaseActivity;
 import com.cubehuang.todayinformation.base.Viewinject;
+import com.cubehuang.todayinformation.main.tools.MainConstantTool;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import butterknife.BindAnim;
+import butterknife.BindBitmap;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
+import butterknife.OnItemClick;
 
 @Viewinject(mainlayoutid = R.layout.activity_main)
 public class MainActivity extends BaseActivity implements IMainActivityContract.Iview {
@@ -72,9 +77,9 @@ public class MainActivity extends BaseActivity implements IMainActivityContract.
     //shanghai 杭州
     private void handleBottomPosition() {
         if (rbMainHangzhou.isChecked()) {
-            mPresenter.replaceFragment(1);
+            mPresenter.replaceFragment(MainConstantTool.HANGZHOU);
         } else {
-            mPresenter.replaceFragment(0);
+            mPresenter.replaceFragment(MainConstantTool.SHANGHAI);
         }
         /*if (mPresenter.getTopPosition() != 1) {
             mPresenter.replaceFragment(0);
@@ -89,9 +94,9 @@ public class MainActivity extends BaseActivity implements IMainActivityContract.
     //广州 深圳
     private void handleTopPosition() {
         if (rbMainShenzhen.isChecked()) {
-            mPresenter.replaceFragment(3);
+            mPresenter.replaceFragment(MainConstantTool.SHENZHEN);
         } else {
-            mPresenter.replaceFragment(2);
+            mPresenter.replaceFragment(MainConstantTool.GUANGZHOU);
         }
 
         /*if (mPresenter.getBottomPosition() != 3) {
@@ -152,22 +157,22 @@ public class MainActivity extends BaseActivity implements IMainActivityContract.
         switch (view.getId()){
             case R.id.rb_main_shanghai:
                 if (mPresenter.getmCurrentCheckId() != R.id.rb_main_shanghai){
-                    mPresenter.replaceFragment(0);
+                    mPresenter.replaceFragment(MainConstantTool.SHANGHAI);
                 }
                 break;
             case R.id.rb_main_hangzhou:
                 if (mPresenter.getmCurrentCheckId() != R.id.rb_main_hangzhou){
-                    mPresenter.replaceFragment(1);
+                    mPresenter.replaceFragment(MainConstantTool.HANGZHOU);
                 }
                 break;
             case R.id.rb_main_guangzhou:
                 if (mPresenter.getmCurrentCheckId() != R.id.rb_main_guangzhou){
-                    mPresenter.replaceFragment(2);
+                    mPresenter.replaceFragment(MainConstantTool.GUANGZHOU);
                 }
                 break;
             case R.id.rb_main_shenzhen:
                 if (mPresenter.getmCurrentCheckId() != R.id.rb_main_shenzhen){
-                    mPresenter.replaceFragment(3);
+                    mPresenter.replaceFragment(MainConstantTool.SHENZHEN);
                 }
                 break;
         }

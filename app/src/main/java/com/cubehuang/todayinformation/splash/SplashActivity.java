@@ -16,6 +16,7 @@ import com.cubehuang.todayinformation.main.MainActivity;
 import com.cubehuang.todayinformation.R;
 import com.cubehuang.todayinformation.base.Viewinject;
 import com.cubehuang.todayinformation.base.BaseActivity;
+import com.google.android.material.appbar.AppBarLayout;
 
 import java.io.File;
 

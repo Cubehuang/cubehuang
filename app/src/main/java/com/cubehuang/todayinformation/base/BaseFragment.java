@@ -2,6 +2,7 @@ package com.cubehuang.todayinformation.base;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +20,7 @@ import butterknife.ButterKnife;
 
 public abstract class BaseFragment extends LifeCircleMvpFragment {
 
-    private Context mContext;
+    protected Context mContext;
 
     @Nullable
     @Override
@@ -29,7 +30,10 @@ public abstract class BaseFragment extends LifeCircleMvpFragment {
         if (annotation != null){
             int mainlayoutid = annotation.mainlayoutid();
             if (mainlayoutid > 0){
+                Log.e("hsy","打印一下mainlayoutID= "+mainlayoutid);
+                Log.e("hsy","打印一下context = "+mContext);
                 mView = initFragmentView(inflater,mainlayoutid);
+                Log.e("hsy","打印一下View= "+mView);
                 bindeView(mView);
                 afterBindView();
 
@@ -43,7 +47,7 @@ public abstract class BaseFragment extends LifeCircleMvpFragment {
     }
 
     private View initFragmentView(LayoutInflater inflater,int mainlayoutid) {
-        return inflater.from(mContext).inflate(mainlayoutid,null);
+        return LayoutInflater.from(mContext).inflate(mainlayoutid,null);
     }
 
     @Override
@@ -62,7 +66,7 @@ public abstract class BaseFragment extends LifeCircleMvpFragment {
     public abstract void afterBindView();
 //View的依赖注入绑定
     private void bindeView(View mView) {
-
+        ButterKnife.setDebug(true);
         ButterKnife.bind(mView);
     }
 }
