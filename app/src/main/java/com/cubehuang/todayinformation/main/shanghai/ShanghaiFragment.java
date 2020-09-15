@@ -13,13 +13,14 @@ import butterknife.BindView;
 
 @Viewinject(mainlayoutid = R.layout.fragment_shanghai)
 public class ShanghaiFragment extends BaseFragment {
-    @BindView(R.id.shanghai_appBar)
-    AppBarLayout shanghaiAppBar ;
+
+
     @BindView(R.id.tv_shanghai_welcome)
     Toolbar tvShanghaiWelcome;
     @BindView(R.id.shanghai_CollapsingToolbarLayout)
     CollapsingToolbarLayout shanghaiCollapsingToolbarLayout;
-
+    @BindView(R.id.shanghai_appBar)
+    AppBarLayout shanghaiAppBar;
 
     @Override
     public void afterBindView() {

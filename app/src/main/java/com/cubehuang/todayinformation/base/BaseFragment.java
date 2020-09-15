@@ -67,6 +67,6 @@ public abstract class BaseFragment extends LifeCircleMvpFragment {
 //View的依赖注入绑定
     private void bindeView(View mView) {
         ButterKnife.setDebug(true);
-        ButterKnife.bind(mView);
+        ButterKnife.bind(this,mView);
     }
 }
