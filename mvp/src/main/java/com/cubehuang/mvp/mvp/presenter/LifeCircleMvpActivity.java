@@ -1,4 +1,4 @@
-package com.cubehuang.todayinformation.mvp.presenter;
+package com.cubehuang.mvp.mvp.presenter;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,8 +8,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.cubehuang.todayinformation.mvp.IMVPView;
-import com.cubehuang.todayinformation.mvp.MvpControler;
+import com.cubehuang.mvp.mvp.IMVPView;
+import com.cubehuang.mvp.mvp.MvpControler;
 
 public class LifeCircleMvpActivity extends AppCompatActivity implements IMVPView {
     private MvpControler Mvpcontroler;//静态代理与动态代理的区别？ 主要的区别是代理类是否提前创建存在的

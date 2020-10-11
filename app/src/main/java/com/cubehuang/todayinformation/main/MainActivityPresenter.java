@@ -9,7 +9,7 @@ import com.cubehuang.todayinformation.main.guangzhou.GuangzhouFragment;
 import com.cubehuang.todayinformation.main.hangzhou.HangzhouFragment;
 import com.cubehuang.todayinformation.main.shanghai.ShanghaiFragment;
 import com.cubehuang.todayinformation.main.shenzhen.ShengzhenFragment;
-import com.cubehuang.todayinformation.mvp.BaseMvpPreseter.BaseMvpPresenter;
+import com.cubehuang.mvp.mvp.BaseMvpPreseter.BaseMvpPresenter;
 
 public class MainActivityPresenter extends BaseMvpPresenter<IMainActivityContract.Iview> implements IMainActivityContract.IPresenter {
     private int mCurrentFragment;

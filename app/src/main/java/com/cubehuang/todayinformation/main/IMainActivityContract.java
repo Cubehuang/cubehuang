@@ -2,9 +2,9 @@ package com.cubehuang.todayinformation.main;
 
 import androidx.fragment.app.Fragment;
 
-import com.cubehuang.todayinformation.mvp.IMVPView;
-import com.cubehuang.todayinformation.mvp.IlifeCircle;
-import com.cubehuang.todayinformation.mvp.MvpControler;
+import com.cubehuang.mvp.mvp.IMVPView;
+import com.cubehuang.mvp.mvp.IlifeCircle;
+import com.cubehuang.mvp.mvp.MvpControler;
 
 public interface IMainActivityContract {
 

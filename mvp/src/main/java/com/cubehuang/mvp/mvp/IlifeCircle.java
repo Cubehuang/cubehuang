@@ -1,4 +1,4 @@
-package com.cubehuang.todayinformation.mvp;
+package com.cubehuang.mvp.mvp;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,7 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.cubehuang.todayinformation.mvp.IMVPView;
+import com.cubehuang.mvp.mvp.IMVPView;
 
 public interface IlifeCircle {
     void onCreate(Bundle savedInstanceState, Intent intent,Bundle getArgument);

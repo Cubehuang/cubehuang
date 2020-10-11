@@ -1,8 +1,8 @@
 package com.cubehuang.todayinformation.splash;
 
-import com.cubehuang.todayinformation.mvp.IMVPView;
-import com.cubehuang.todayinformation.mvp.IlifeCircle;
-import com.cubehuang.todayinformation.mvp.MvpControler;
+import com.cubehuang.mvp.mvp.IMVPView;
+import com.cubehuang.mvp.mvp.IlifeCircle;
+import com.cubehuang.mvp.mvp.MvpControler;
 
 public interface ISplashActivityContract {
     interface Iview extends IMVPView {

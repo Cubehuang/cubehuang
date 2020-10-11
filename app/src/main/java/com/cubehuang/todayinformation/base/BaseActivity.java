@@ -2,8 +2,8 @@ package com.cubehuang.todayinformation.base;
 
 import android.os.Bundle;
 
-import com.cubehuang.todayinformation.base.Viewinject;
-import com.cubehuang.todayinformation.mvp.presenter.LifeCircleMvpActivity;
+
+import com.cubehuang.mvp.mvp.presenter.LifeCircleMvpActivity;
 
 import butterknife.ButterKnife;
 

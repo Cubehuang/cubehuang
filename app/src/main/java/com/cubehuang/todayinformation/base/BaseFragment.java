@@ -10,11 +10,9 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.cubehuang.todayinformation.mvp.presenter.LifeCircleMvpActivity;
-import com.cubehuang.todayinformation.mvp.presenter.LifeCircleMvpFragment;
-import com.cubehuang.todayinformation.mvp.presenter.LifeCircleMvpPresenter;
-
-import java.util.zip.Inflater;
+import com.cubehuang.mvp.mvp.presenter.LifeCircleMvpActivity;
+import com.cubehuang.mvp.mvp.presenter.LifeCircleMvpFragment;
+import com.cubehuang.mvp.mvp.presenter.LifeCircleMvpPresenter;
 
 import butterknife.ButterKnife;
 

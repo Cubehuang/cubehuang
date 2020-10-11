@@ -1,4 +1,4 @@
-package com.cubehuang.todayinformation.mvp.BaseMvpPreseter;
+package com.cubehuang.mvp.mvp.BaseMvpPreseter;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,8 +6,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.cubehuang.todayinformation.mvp.IMVPView;
-import com.cubehuang.todayinformation.mvp.presenter.LifeCircleMvpPresenter;
+import com.cubehuang.mvp.mvp.IMVPView;
+import com.cubehuang.mvp.mvp.presenter.LifeCircleMvpPresenter;
 /*
 * 抽象
 * */

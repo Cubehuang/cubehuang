@@ -1,4 +1,4 @@
-package com.cubehuang.todayinformation.mvp;
+package com.cubehuang.mvp.mvp;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,7 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.cubehuang.todayinformation.mvp.presenter.LifeCircleMvpPresenter;
+import com.cubehuang.mvp.mvp.presenter.LifeCircleMvpPresenter;
 
 import java.util.HashSet;
 import java.util.Iterator;
